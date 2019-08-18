@@ -31,7 +31,7 @@
         "You tried to turn the robot to an invalid direction :( Try \"up\", \"down\", \"right\" or \"left\"."))))
 
 (defn attack
-  "Returns a new grid that the cell attacked is reseted to the default value"
+  "Returns a new grid that the cell attacked is reset to the default value"
   [grid robot]
   (let [direction @(get robot :facing)
         attacked-position (g/get-position-by-direction direction {'x @(get robot :x)
