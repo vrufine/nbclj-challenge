@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c0216f18-1922-4403-85bd-91a9701dcb43" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="web" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Clojure Namespace" />
+        <option value="ClojureScript Test Namespace" />
+        <option value="Clojure Test Namespace" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectId" id="1P4ytJ5ReqHxgFtTifQbKBJKsLn" />
+  <component name="PropertiesComponent">
+    <property name="cursive.last.file.extension./Users/viniciusrufine/dev/web/src" value="clj" />
+    <property name="cursive.last.file.extension./Users/viniciusrufine/dev/web/test" value="clj" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="ReadonlyStatusHandler">
+    <option name="SHOW_DIALOG" value="false" />
+  </component>
+  <component name="ReplState" timestamp="1566116801575">{:repl-history {:ide [], :local [{:command &quot;(require '[web.core :as c])&quot;, :offset 27, :ns &quot;web.core&quot;} {:command &quot;(def server (c/create-server))&quot;, :offset 30, :ns &quot;web.core&quot;} {:command &quot;(c/stop-server)&quot;, :offset 14, :ns &quot;web.core&quot;} {:command &quot;(server/stop-server)&quot;, :offset 7, :ns &quot;web.core&quot;} {:command &quot;(stop-server)&quot;, :offset 12, :ns &quot;web.core&quot;} {:command &quot;(c/stop-server server)&quot;, :offset 21, :ns &quot;web.core&quot;} {:command &quot;(server)&quot;, :offset 8, :ns &quot;web.core&quot;} {:command &quot;(create-server)&quot;, :offset 14, :ns &quot;web.core&quot;} {:command &quot;(type server)&quot;, :offset 6, :ns &quot;web.core&quot;} {:command &quot;(ns-unmap *ns* 's)&quot;, :offset 17, :ns &quot;web.core&quot;} {:command &quot;(stop-server s)&quot;, :offset 14, :ns &quot;web.core&quot;} {:command &quot;(def s (create-server))&quot;, :offset 21, :ns &quot;web.core&quot;} {:command &quot;(stop-server server)&quot;, :offset 19, :ns &quot;web.core&quot;} {:command &quot;(def server (create-server))&quot;, :offset 26, :ns &quot;web.core&quot;} {:command &quot;(to-array-2d 5 5)&quot;, :offset 16, :ns &quot;web.domains.robots&quot;} {:command &quot;(to-array-2d 5)&quot;, :offset 14, :ns &quot;web.domains.robots&quot;} {:command &quot;(to-array-2d [2 2])&quot;, :offset 17, :ns &quot;web.domains.robots&quot;} {:command &quot;(def a \&quot;ok\&quot;)&quot;, :offset 10, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(type a)&quot;, :offset 8, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(= String (type a))&quot;, :offset 17, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(&gt;= 3 0)&quot;, :offset 7, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(&gt;= 0 0)&quot;, :offset 5, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(&gt;= -1 0)&quot;, :offset 6, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(&gt;= 0 -1)&quot;, :offset 8, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(&lt; 3 (alength [1 2 3]))&quot;, :offset 23, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(&lt; 3 (alength ([1 2 3])))&quot;, :offset 15, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(alength [123])&quot;, :offset 13, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(alength [1 2 3])&quot;, :offset 16, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(repeat 2 \&quot;OK\&quot;)&quot;, :offset 9, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(alength (repeat 2 \&quot;OK\&quot;))&quot;, :offset 9, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(str \&quot;Invalid movement direction: \\\&quot;\&quot; 123\n     \&quot;\\\&quot;. Try \\\&quot;up\\\&quot;, \\\&quot;down\\\&quot;, \\\&quot;left\\\&quot; or \\\&quot;right\\\&quot;.\&quot;)&quot;, :offset 41, :ns &quot;web.domains.robots&quot;} {:command &quot;(def r (create-robot 5 5 \&quot;up\&quot;))&quot;, :offset 29, :ns &quot;web.domains.robots&quot;} {:command &quot;(println r)&quot;, :offset 11, :ns &quot;web.domains.robots&quot;} {:command &quot;(update r :facing \&quot;down\&quot;)&quot;, :offset 24, :ns &quot;web.domains.robots&quot;} {:command &quot;(update r :x 33)&quot;, :offset 15, :ns &quot;web.domains.robots&quot;} {:command &quot;(def t {'a 10 'b 20 'c 30})&quot;, :offset 27, :ns &quot;web.domains.robots-test&quot;} {:command &quot;(get 'a t)&quot;, :offset 9, :ns &quot;web.domains.robots-test&quot;} {:command &quot;(get t 'a)&quot;, :offset 9, :ns &quot;web.domains.robots-test&quot;} {:command &quot;(def a (repeat 5 \&quot;-\&quot;))&quot;, :offset 22, :ns &quot;web.domains.dinosaurs-test&quot;} {:command &quot;(def b (\&quot;-\&quot; \&quot;-\&quot; \&quot;-\&quot; \&quot;4\&quot; \&quot;-\&quot;))&quot;, :offset 29, :ns &quot;web.domains.dinosaurs-test&quot;} {:command &quot;(def b (seq \&quot;-\&quot; \&quot;-\&quot; \&quot;-\&quot; \&quot;-\&quot; \&quot;-\&quot;))&quot;, :offset 31, :ns &quot;web.domains.dinosaurs-test&quot;} {:command &quot;(def b (seq (\&quot;-\&quot; \&quot;-\&quot; \&quot;-\&quot; \&quot;-\&quot; \&quot;-\&quot;)))&quot;, :offset 13, :ns &quot;web.domains.dinosaurs-test&quot;} {:command &quot;c&quot;, :offset 1, :ns &quot;web.domains.dinosaurs-test&quot;} {:command &quot;(def c (seq (\&quot;-\&quot; \&quot;-\&quot; \&quot;-\&quot; \&quot;-\&quot; \&quot;-\&quot;)))&quot;, :offset 6, :ns &quot;web.domains.dinosaurs-test&quot;} {:command &quot;(def a 5)&quot;, :offset 8, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(def qwe 123)&quot;, :offset 13, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(def ewqewq 321312)&quot;, :offset 18, :ns &quot;web.domains.grid-test&quot;} {:command &quot;qwe&quot;, :offset 3, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(def arr1 (to-array-2d (repeat 3 (repeat 3 \&quot;-\&quot;))))&quot;, :offset 45, :ns &quot;=&quot;} {:command &quot;arr1&quot;, :offset 4, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(for [x arr1]\n  (println x))&quot;, :offset 26, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(for [x arr1]\n  (for [y (aget arr1 0)]\n    (println x)))&quot;, :offset 53, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(to-array-2d (repeat 3 (repeat 3 0)))&quot;, :offset 34, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(def arr2 (to-array-2d (repeat 3 (repeat 3 0))))&quot;, :offset 47, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(for [x arr2]\n  (for [y (aget arr2 0)]\n    (println y)))&quot;, :offset 53, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(doseq [x (range (alength arr2))]\n  (doseq [y (range (alength arr2 0))]\n    (println x \&quot; - \&quot; y \&quot; - \&quot; (aget arr2 x y))))&quot;, :offset 100, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(doseq [x (range (alength arr2))]\n  (doseq [y (range (alength (aget arr2 0)))]\n    (println x \&quot; - \&quot; y \&quot; - \&quot; (aget arr2 x y))))&quot;, :offset 68, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(aset arr1 1 1 \&quot;Top\&quot;)&quot;, :offset 19, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(doseq [x (range (alength arr1))]\n  (doseq [y (range (alength (aget arr1 0)))]\n    (println x \&quot; - \&quot; y \&quot; - \&quot; (aget arr1 x y))))&quot;, :offset 118, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(doseq [x (range (alength arr1))]\n  (doseq [y (range (alength (aget arr1 0)))]\n    (do\n      (aset arr2 x y (aget arr1 x y))\n      (println \&quot;(arr1)\&quot; x \&quot; - \&quot; y \&quot; - \&quot; (aget arr2 x y)))))&quot;, :offset 147, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(doseq [x (range (alength arr1))]\n  (doseq [y (range (alength (aget arr1 0)))]\n    (do\n      (aset arr2 x y (aget arr1 x y))\n      (println \&quot;(arr2)\&quot; x \&quot; - \&quot; y \&quot; - \&quot; (aget arr2 x y)))))&quot;, :offset 146, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(doseq [x (range (alength arr1))]\n  (doseq [y (range (alength (aget arr1 0)))]\n    (do\n      (aset arr2 x y (aget arr1 x y))\n      (println \&quot;(arr2)\&quot; x \&quot; - \&quot; y \&quot; - \&quot; (aget arr2 x y))\n      arr2)))&quot;, :offset 192, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(do\n  (println \&quot;q\&quot;)\n  (println \&quot;B\&quot;)\n  (println \&quot;d\&quot;)\n  123)&quot;, :offset 57, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(doseq [x 10]\n  (println x))&quot;, :offset 26, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(doseq [x (range 10)]\n  (println x))&quot;, :offset 17, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(def asd (to-array-2d (repeat 3 (repeat 3 \&quot;-\&quot;))))&quot;, :offset 49, :ns &quot;web.domains.grid&quot;} {:command &quot;asd&quot;, :offset 3, :ns &quot;web.domains.grid&quot;} {:command &quot;(def dsa (to-array-2d (repeat 3 (repeat 3 \&quot;-\&quot;))))&quot;, :offset 8, :ns &quot;web.domains.grid&quot;} {:command &quot;(aset asd 2 2 \&quot;Q\&quot;)&quot;, :offset 16, :ns &quot;web.domains.grid&quot;} {:command &quot;(aget asd 2 2)&quot;, :offset 13, :ns &quot;web.domains.grid&quot;} {:command &quot;(aget dsa 2 2)&quot;, :offset 9, :ns &quot;web.domains.grid&quot;} {:command &quot;(def dsa2 (merge-grids asd dsa))&quot;, :offset 30, :ns &quot;web.domains.grid&quot;} {:command &quot;(aget dsa2 2 2)&quot;, :offset 10, :ns &quot;web.domains.grid&quot;} {:command &quot;(stringify-grid asd)&quot;, :offset 19, :ns &quot;web.domains.grid&quot;} {:command &quot;(stringify-grid dsa)&quot;, :offset 19, :ns &quot;web.domains.grid&quot;} {:command &quot;(stringify-grid dsa2)&quot;, :offset 20, :ns &quot;web.domains.grid&quot;} {:command &quot;(def a 3)&quot;, :offset 9, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(def b 6)&quot;, :offset 8, :ns &quot;web.domains.grid-test&quot;} {:command &quot;b&quot;, :offset 1, :ns &quot;web.domains.grid-test&quot;} {:command &quot;(def a b)&quot;, :offset 9, :ns &quot;web.domains.grid-test&quot;} {:command &quot;a&quot;, :offset 1, :ns &quot;web.domains.grid-test&quot;}], :remote []}}</component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Clojure REPL.webREPL">
+    <configuration default="true" type="ClojureREPL" factoryName="Local" activateToolWindowBeforeRun="false">
+      <module name="web" />
+      <setting name="replType" value="NREPL" />
+      <setting name="execution" value="LEININGEN" />
+      <setting name="jvmArgs" value="" />
+      <setting name="parameters" value="" />
+      <setting name="workingDir" value="$PROJECT_DIR$" />
+      <setting name="profiles" value="" />
+      <setting name="aliases" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="ClojureREPL" factoryName="Remote" activateToolWindowBeforeRun="false">
+      <setting name="host" value="" />
+      <setting name="port" value="0" />
+      <setting name="replType" value="0" />
+      <module name="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="webREPL" type="ClojureREPL" factoryName="Local" activateToolWindowBeforeRun="false">
+      <module name="web" />
+      <setting name="replType" value="NREPL" />
+      <setting name="execution" value="LEININGEN" />
+      <setting name="jvmArgs" value="" />
+      <setting name="parameters" value="" />
+      <setting name="workingDir" value="$PROJECT_DIR$" />
+      <setting name="profiles" value="" />
+      <setting name="aliases" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="web.domains.grid-test" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+      <module name="web" />
+      <setting name="path" value="$PROJECT_DIR$/test/web/domains/grid_test.clj" />
+      <setting name="namespace" value="" />
+      <setting name="execution" value="INTELLIJ" />
+      <setting name="profiles" value="" />
+      <setting name="aliases" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="$PROJECT_DIR$/test/web/domains" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Clojure Application.web.domains.grid-test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c0216f18-1922-4403-85bd-91a9701dcb43" name="Default Changelist" comment="" />
+      <created>1565147876333</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1565147876333</updated>
+    </task>
+    <servers />
+  </component>
+</project>
