@@ -31,9 +31,24 @@
         "You tried to turn the robot to an invalid direction :( Try \"up\", \"down\", \"right\" or \"left\"."))))
 
 (defn attack
-  "Returns a new grid which the cell attacked is set with an 'x' to mark the attacked position"
-  [grid robot]
-  (let [direction @(get robot :facing)
-        attacked-position (g/get-position-by-direction direction {'x @(get robot :x)
-                                                                  'y @(get robot :y)})]
-    (g/update-cell grid (get attacked-position 'x) (get attacked-position 'y) "x")))
+  "Updates the given game reference with the new attacked grid and
+  a new dinosaurs list (in case of destruction, one less dino to disturb!)"
+  [game-ref robot]
+  (try
+    (let [grid-ref (get game-ref 'grid)
+          direction @(get robot :facing)
+          attacked-position (g/get-position-by-direction
+                              direction {'x @(get robot :x)
+                                         'y @(get robot :y)})
+          attacked-x (get attacked-position 'x)
+          attacked-y (get attacked-position 'y)
+          new-dinos-list (remove
+                           #(= {:Position {'x attacked-x 'y attacked-y}} %)
+                           @(get game-ref 'dinos))]
+      (dosync
+        (ref-set (get game-ref 'grid) (g/update-cell @grid-ref attacked-x attacked-y "x"))
+        (ref-set (get game-ref 'dinos) new-dinos-list)
+        ))
+    (catch Exception e (throw (Exception. (str "We could not process the attack. "
+                                               "Check if the robot is facing a valid direction "
+                                               "within the grid."))))))

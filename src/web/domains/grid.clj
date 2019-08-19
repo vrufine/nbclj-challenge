@@ -117,7 +117,7 @@
           (do
             ;(prn (stringify-grid merged-grid))
             merged-grid))))
-    (throw (Exception. "Update cell error: invalid position."))))
+    (throw (Exception. "Invalid position."))))
 
 
 (defn move-cell-value
@@ -130,7 +130,7 @@
           (is-valid-position? original-grid new-x new-y)
           (cell-is-empty? original-grid new-x new-y))
       (switch-cells original-grid {'x old-x 'y old-y} {'x new-x 'y new-y})
-      (throw (Exception. "Move cell value: error while updating cells.")))))
+      (throw (Exception. "Error while moving the cell value.")))))
 
 (defn move-cell
   "Move the given cell content onto the given direction"

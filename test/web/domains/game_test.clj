@@ -81,29 +81,102 @@
 (deftest game-interactions
   (testing "The grid cell where the dinosaur is, should be empty after a robot attack"
     (try
-      (prn "Testing dino death...")
       (let [game-ref (game/new-game)
             grid-ref (get game-ref 'grid)
             robots-ref (get game-ref 'robots)
             dinos-ref (get game-ref 'dinos)
             assassin-robot-killer (robots/create-robot 10 16 "down")]
         (dosync
+          (is (= 0 (count @robots-ref)))
+          (is (= 0 (count @dinos-ref)))
           (is (true? (grid/cell-is-empty? @grid-ref 10 15)))
+          (is (true? (grid/cell-is-empty? @grid-ref 10 16)))
 
           (game/place-dino game-ref 10 15)
-
+          (is (= 1 (count @dinos-ref)))
           (is (not (true? (grid/cell-is-empty? @grid-ref 10 15))))
 
           (game/place-robot game-ref assassin-robot-killer)
+          (is (= 1 (count @robots-ref)))
+          (is (not (true? (grid/cell-is-empty? @grid-ref 10 16))))
 
           (dosync
             (is (= "D" (grid/get-cell-value @grid-ref 10 15)))
-            (ref-set (get game-ref 'grid) (robots/attack @grid-ref assassin-robot-killer))
-            (is (= "x" (grid/get-cell-value @grid-ref 10 15))))))
+            (robots/attack game-ref assassin-robot-killer)
+            (is (= 0 (count @dinos-ref)))
+            (is (true? (grid/cell-is-empty? @grid-ref 10 15))))))
       (catch Exception e (do
                            (println "dino death test error: " (.getMessage e))
                            (is (nil? e))))))
 
-  (testing "Should throw error if the robot attacks an invalid grid cell")
+  (testing "Should throw error if the robot attacks an invalid grid cell"
+    (try
+      (let [game-ref (game/new-game)
+            robot-0-0 (robots/create-robot 0 0 "down")
+            robot-0-49 (robots/create-robot 0 49 "left")
+            robot-49-0 (robots/create-robot 49 0 "right")
+            robot-49-49 (robots/create-robot 49 49 "up")]
+        (do
+          (try
+            (game/place-robot game-ref robot-0-0)
+            (robots/attack game-ref robot-0-0)
+            (catch Exception e
+              (let [error-message (.getMessage e)]
+                (do
+                  (is (not (nil? e)))
+                  (is
+                    (= (str "We could not process the attack. "
+                            "Check if the robot is facing a valid direction within the grid.")
+                       error-message))))))
 
-  (testing "The game grid should update cells after the a robot move"))
+          (try
+            (game/place-robot game-ref robot-0-49)
+            (robots/attack game-ref robot-0-49)
+            (catch Exception e
+              (let [error-message (.getMessage e)]
+                (do
+                  (is (not (nil? e)))
+                  (is
+                    (= (str "We could not process the attack. "
+                            "Check if the robot is facing a valid direction within the grid.")
+                       error-message))))))
+
+          (try
+            (game/place-robot game-ref robot-49-0)
+            (robots/attack game-ref robot-49-0)
+            (catch Exception e
+              (let [error-message (.getMessage e)]
+                (do
+                  (is (not (nil? e)))
+                  (is
+                    (= (str "We could not process the attack. "
+                            "Check if the robot is facing a valid direction within the grid.")
+                       error-message))))))
+
+          (try
+            (game/place-robot game-ref robot-49-49)
+            (robots/attack game-ref robot-49-49)
+            (catch Exception e
+              (let [error-message (.getMessage e)]
+                (do
+                  (is (not (nil? e)))
+                  (is
+                    (= (str "We could not process the attack. "
+                            "Check if the robot is facing a valid direction within the grid.")
+                       error-message))))))
+          ))
+      (catch Exception e
+        (let [error-message (.getMessage e)]
+          (println "Unexpected error ==> " error-message)))))
+
+  (testing "The game grid should update cells after the a robot move"
+    (let [game-ref (game/new-game)
+          robot (robots/create-robot 20 20 "right")]
+      (do
+        (game/place-robot game-ref robot)
+        (let [grid-copy (aclone @(get game-ref 'grid))]
+          (is (= robot (grid/get-cell-value grid-copy 20 20)))
+          (is (= "-" (grid/get-cell-value grid-copy 21 20)))
+          (robots/move @(get game-ref 'grid) robot)
+          (is (= "-" (grid/get-cell-value grid-copy 20 20)))
+          (is (= robot (grid/get-cell-value grid-copy 21 20))))))))
