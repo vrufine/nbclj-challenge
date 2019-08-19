@@ -1,13 +1,16 @@
 (ns web.domains.game
   (:require [web.domains.grid :as grid]))
 
+(defonce ^:private current-game (ref nil))
+
 (defn new-game []
   (try
     (let [grid (grid/create-grid 50)]
-      (do
-        {'grid   (ref grid)
-         'robots (ref (sequence []))
-         'dinos  (ref (sequence []))}))
+      (dosync
+        (ref-set current-game {'grid   (ref grid)
+                               'robots (ref (sequence []))
+                               'dinos  (ref (sequence []))})
+        current-game))
     (catch Exception e (throw (Exception. "Error while we tried to create a new game :(")))))
 
 (defn get-game-robots [game-ref]
@@ -47,3 +50,37 @@
         (ref-set dinos-ref (concat @dinos-ref (seq [{:Position {'x x 'y y}}])))
         game-ref))
     (catch Exception e (throw e))))
+
+(defn get-current-game []
+  (if (not (nil? @current-game))
+    (do
+      (println "Html type: " (type (grid/stringify-grid @(get @current-game 'grid))))
+      (println "Robots sequence: " (if (> 0 (count @(get @current-game 'robots)))
+                                     (map
+                                       (fn [r] (do @r))
+                                       @(get @current-game 'robots))
+                                     (sequence [])))
+      (println "Dinos sequence: " (if (> 0 (count @(get @current-game 'dinos)))
+                                    (map
+                                      (fn [r] (do @r))
+                                      @(get @current-game 'dinos))
+                                    (sequence [])))
+
+      {'html (grid/stringify-grid @(get @current-game 'grid))
+       'ref  current-game
+       'data {'grid   @(get @current-game 'grid)
+              'robots (if (> 0 (count @(get @current-game 'robots)))
+                        (map
+                          (fn [r] (do @r))
+                          @(get @current-game 'robots))
+                        nil)
+              'dinos  (if (> 0 (count @(get @current-game 'dinos)))
+                        (map
+                          (fn [r] (do @r))
+                          @(get @current-game 'dinos))
+                        nil)
+              }})
+
+    {'html "No game to show"
+     'ref  nil
+     'data nil}))

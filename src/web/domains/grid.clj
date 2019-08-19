@@ -63,17 +63,30 @@
   [grid x y]
   (or (= "x" (get-cell-value grid x y)) (= "-" (get-cell-value grid x y))))
 
+(defn stringify-robot [robot]
+  (str "Robot facing " (cond
+                         (= "up" @(get robot 'facing)) "⬆"
+                         (= "down" @(get robot 'facing)) "⬇"
+                         (= "left" @(get robot 'facing)) "⬅"
+                         (= "right" @(get robot 'facing)) "➡"
+                         )))
+
 (defn stringify-grid
   "Return the stringified grid"
   [grid]
-  (let [grid-str (atom "")
+  (let [grid-str (atom "<table cellspacing='0' cellpadding='5' border='1'><tbody>")
         grid-size-x (alength grid)
         grid-size-y (alength (aget grid 0))]
-    (doseq [y (range grid-size-y)]
-      (doseq [x (range grid-size-x)]
-        (reset! grid-str (str @grid-str (get-cell-value grid x y) " ")))
-      (reset! grid-str (str @grid-str "(y: " y ")\n")))
-    @grid-str))
+    (do
+      (doseq [y (range grid-size-y)]
+        (reset! grid-str (str @grid-str "<tr>"))
+        (doseq [x (range grid-size-x)]
+          (reset! grid-str (str @grid-str "<td> (X" x ", Y" y "): <br/>" (if (not (nil? (get (get-cell-value grid x y) 'facing)))
+                                                                           (stringify-robot (get-cell-value grid x y))
+                                                                           (get-cell-value grid x y)) "</td>")))
+
+        (reset! grid-str (str @grid-str "</tr>")))
+      (reset! grid-str (str @grid-str "</tbody></table>")))))
 
 (defn merge-grids
   "Merge grids X and Y axis"

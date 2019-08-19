@@ -50,7 +50,9 @@
     "The grid is properly stringified"
     (let [grid-tested (create-grid 10)
           grid-string (stringify-grid grid-tested)]
-      (is (= String (type grid-string)))))
+      (do
+        (println grid-string)
+        (is (= String (type grid-string))))))
 
   (testing
     "The content of a cell is moved to another cell"

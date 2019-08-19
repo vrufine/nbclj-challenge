@@ -2,6 +2,7 @@
   <dictionary name="viniciusrufine">
     <words>
       <w>compojure</w>
+      <w>defroutes</w>
       <w>dinos</w>
       <w>httpkit</w>
       <w>inválido</w>

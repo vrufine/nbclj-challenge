@@ -1,6 +1,6 @@
 (ns web.core
   (:require [org.httpkit.server :as s]
-            [compojure.core :refer [routes POST GET ANY]]))
+            [compojure.core :refer :all]))
 
 (defonce ^:private server (atom nil))
 
