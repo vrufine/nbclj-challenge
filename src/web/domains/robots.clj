@@ -19,7 +19,7 @@
       (let [new-grid (g/move-cell grid old-pos direction)
             new-robot (create-robot new-x new-y direction)]
         {'robot new-robot 'grid new-grid}))
-    (catch Exception e (pprint (str "move-robot error: " (.getMessage e))))))
+    (catch Exception e (throw e))))
 
 (defn turn
   "Turn the given robot to the given direction"
@@ -31,11 +31,9 @@
         "You tried to turn the robot to an invalid direction :( Try \"up\", \"down\", \"right\" or \"left\"."))))
 
 (defn attack
-  "Returns a new grid that the cell attacked is reset to the default value"
+  "Returns a new grid which the cell attacked is set with an 'x' to mark the attacked position"
   [grid robot]
   (let [direction @(get robot :facing)
         attacked-position (g/get-position-by-direction direction {'x @(get robot :x)
                                                                   'y @(get robot :y)})]
-    (try
-      (g/update-cell grid (get attacked-position 'x) (get attacked-position 'y) "-")
-      (catch Exception e (println (.getMessage e))))))
+    (g/update-cell grid (get attacked-position 'x) (get attacked-position 'y) "x")))

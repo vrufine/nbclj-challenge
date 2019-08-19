@@ -162,5 +162,22 @@
       (do
         (is (not (identical? (aget @original-grid 3 6) (aget new-grid 3 6))))
         (dosync (ref-set original-grid new-grid))
-        (is (identical? (aget @original-grid 3 6) (aget new-grid 3 6))))))
+        (is (identical? (aget @original-grid 3 6) (aget new-grid 3 6)))
+        (-> (aget @original-grid 3 6)
+            is
+            (identical? (aget new-grid 3 6)))
+        )))
+
+  (testing "Place two elements simultaneously on the grid"
+    (let [grid (atom (create-grid 5))]
+      (do
+        (is (= "-" (aget @grid 0 0)))
+        (is (= "-" (aget @grid 4 4)))
+        (reset! grid (place-new-element @grid 0 0 "A"))
+        (is (= "A" (aget @grid 0 0)))
+        (is (= "-" (aget @grid 4 4)))
+        (reset! grid (place-new-element @grid 4 4 "B"))
+        (is (= "A" (aget @grid 0 0)))
+        (is (= "B" (aget @grid 4 4)))
+        )))
   )

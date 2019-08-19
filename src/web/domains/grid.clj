@@ -6,19 +6,6 @@
   [size]
   (to-array-2d (repeat size (repeat size "-"))))
 
-
-(defn merge-grids
-  "Merge grids X and Y axis"
-  [old new]
-  (let [size (alength old)
-        new-grid (create-grid size)]
-    (do
-      (doseq [x (range size)]
-        (doseq [y (range size)]
-          (do
-            (aset new-grid x y (aget new-grid x y)))))
-      new)))
-
 (defn is-valid-direction?
   [direction]
   (or
@@ -48,6 +35,22 @@
           :else original-position)
         (throw (Exception. (str "Invalid position and/or direction")))))))
 
+(defn switch-cells
+  "Use given grid reference to switch the cells"
+  [grid from to]
+  (let [{from-x 'x
+         from-y 'y} from
+        {to-x 'x
+         to-y 'y} to
+        from-value (aget grid from-x from-y)
+        to-value (aget grid to-x to-y)]
+    (if (and (is-valid-position? grid from-x from-y) (is-valid-position? grid to-x to-y))
+      (do
+        (aset grid to-x to-y from-value)
+        (aset grid from-x from-y to-value)
+        grid)
+      (throw (Exception. "You are trying to move from (or to) an invalid grid position :(")))))
+
 (defn get-cell-value
   "Returns the given x-y cell value"
   [grid x y]
@@ -58,17 +61,7 @@
 (defn cell-is-empty?
   "Checks if the given cell is empty and something can be placed"
   [grid x y]
-  (= "-" (get-cell-value grid x y)))
-
-(defn update-cell
-  "Returns a new grid with the cell updated value."
-  [old-grid x y value]
-  (if (is-valid-position? old-grid x y)
-    (let [new-grid (create-grid (alength old-grid))]
-      (do
-        (aset new-grid x y value)
-        (merge-grids old-grid new-grid)))
-    (throw (Exception. "Update cell error: invalid position."))))
+  (or (= "x" (get-cell-value grid x y)) (= "-" (get-cell-value grid x y))))
 
 (defn stringify-grid
   "Return the stringified grid"
@@ -82,21 +75,61 @@
       (reset! grid-str (str @grid-str "(y: " y ")\n")))
     @grid-str))
 
+(defn merge-grids
+  "Merge grids X and Y axis"
+  [old-grid new-grid]
+  (let [size (alength old-grid)
+        returning-grid (create-grid size)]
+    (do
+      (doseq [x (range size)]
+        (doseq [y (range size)]
+          (let [new-value (aget new-grid x y)
+                old-value (aget old-grid x y)]
+            (cond
+              (and
+                (= "-" old-value)
+                (= "-" new-value)) (aset returning-grid x y old-value)
+
+              (and
+                (not= old-value new-value)
+                (not= "-" new-value)) (aset returning-grid x y new-value)
+
+              (and
+                (not= old-value new-value)
+                (not= "-" old-value)) (aset returning-grid x y old-value)
+
+              :else (aset returning-grid x y new-value)))))
+      returning-grid)))
+
+(defn update-cell
+  "Returns a new grid with the cell updated value."
+  [old-grid x y value]
+  (if (is-valid-position? old-grid x y)
+    (let [new-grid (create-grid (alength old-grid))]
+      (do
+        (aset new-grid x y value)
+        ;(when (or (= x 4) (= x 0)) (do
+        ;                             (prn "old grid    => " (stringify-grid old-grid))
+        ;                             (prn "new grid    => " (stringify-grid new-grid))
+        ;                             (prn "merged grid =>" (stringify-grid (merge-grids old-grid new-grid)))
+        ;                             (merge-grids old-grid new-grid)))
+        (let [merged-grid (merge-grids old-grid new-grid)]
+          (do
+            ;(prn (stringify-grid merged-grid))
+            merged-grid))))
+    (throw (Exception. "Update cell error: invalid position."))))
+
+
 (defn move-cell-value
   "Move the cell value from one to another cell"
   [old-pos new-pos original-grid]
   (let [{old-x 'x old-y 'y} old-pos
-        {new-x 'x new-y 'y} new-pos
-        original-cell-value (get-cell-value original-grid old-x old-y)]
+        {new-x 'x new-y 'y} new-pos]
     (if (and
           (is-valid-position? original-grid old-x old-y)
           (is-valid-position? original-grid new-x new-y)
           (cell-is-empty? original-grid new-x new-y))
-      (let
-        [updated-old-cell-grid (update-cell original-grid old-x old-y "-")
-         updated-new-cell-grid (update-cell updated-old-cell-grid new-x new-y original-cell-value)]
-        (do
-          updated-new-cell-grid))
+      (switch-cells original-grid {'x old-x 'y old-y} {'x new-x 'y new-y})
       (throw (Exception. "Move cell value: error while updating cells.")))))
 
 (defn move-cell
@@ -130,4 +163,4 @@
   [grid x y value]
   (if (true? (cell-is-empty? grid x y))
     (update-cell grid x y value)
-    (throw (Exception. "Place new element: this cell isn't empty. Try another position :)"))))
+    (throw (Exception. "This position isn't available. Try another one please! :)"))))
